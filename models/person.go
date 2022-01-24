@@ -6,8 +6,8 @@ type Person struct {
 	Surname string `json:"surname"`
 	Race    string `json:"race"`
 	Age     uint   `json:"age"`
-	Job     uint   `json:"job"`
 	Alive   bool   `json:"alive"`
+	Jobs    []Job  `json:"jobs" `
 }
 
 type CreatePersonInput struct {
@@ -15,8 +15,8 @@ type CreatePersonInput struct {
 	Surname string `json:"surname" bindings:"required"`
 	Race    string `json:"race" bindings:"required"`
 	Age     uint   `json:"age" bindings:"required"`
-	Job     uint   `json:"job" bindings:"required"`
 	Alive   bool   `json:"alive"`
+	Jobs    []Job  `json:"jobs" `
 }
 
 type UpdatePersonInput struct {
@@ -24,6 +24,6 @@ type UpdatePersonInput struct {
 	Surname string `json:"surname" `
 	Race    string `json:"race"`
 	Age     uint   `json:"age" `
-	Job     uint   `json:"job" `
 	Alive   bool   `json:"alive"`
+	Jobs    []Job  `json:"jobs" `
 }

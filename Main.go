@@ -10,12 +10,16 @@ import (
 func main() {
 	r := gin.Default()
 
-	models.ConnectDatabase() // new
+	models.ConnectDatabase()
 
-	r.GET("/persons", controllers.AllPersons)
-	r.POST("/persons", controllers.CreatePerson)
-	r.GET("/persons/:id", controllers.FindPerson)
-	r.PATCH("/persons/:id", controllers.UpdatePerson)
+	r.GET("/person", controllers.AllPersons)
+	r.POST("/person", controllers.CreatePerson)
+	r.GET("/person/:id", controllers.FindPerson)
+	r.PATCH("/person/:id", controllers.UpdatePerson)
 
+	r.GET("/job", controllers.AllJobs)
+	r.POST("/job", controllers.Createjob)
+	r.GET("/job/:id", controllers.Findjob)
+	r.PATCH("/job/:id", controllers.Updatejob)
 	r.Run()
 }

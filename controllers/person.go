@@ -10,7 +10,8 @@ import (
 
 func AllPersons(c *gin.Context) {
 	var persons []models.Person
-	models.DB.Find(&persons)
+	// get all persons with all their relations
+	models.DB.Preload("Jobs").Find(&persons)
 
 	c.JSON(http.StatusOK, gin.H{"data": persons})
 }
@@ -21,8 +22,8 @@ func CreatePerson(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	person := models.Person{Name: input.Name, Surname: input.Surname, Race: input.Race, Age: input.Age, Job: input.Job}
-	models.DB.Create(&person)
+	person := models.Person{Name: input.Name, Surname: input.Surname, Race: input.Race, Age: input.Age, Alive: input.Alive}
+	models.DB.Preload("Jobs").Create(&person)
 
 	c.JSON(http.StatusOK, gin.H{"data": person})
 }
@@ -30,7 +31,7 @@ func CreatePerson(c *gin.Context) {
 func FindPerson(c *gin.Context) {
 	var person models.Person
 
-	if err := models.DB.Where("id = ?", c.Param("id")).First(&person).Error; err != nil {
+	if err := models.DB.Preload("Jobs").Where("id = ?", c.Param("id")).First(&person).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
 		return
 	}
@@ -40,7 +41,7 @@ func FindPerson(c *gin.Context) {
 
 func UpdatePerson(c *gin.Context) {
 	var person models.Person
-	if err := models.DB.Where("id = ?", c.Param("id")).First(&person).Error; err != nil {
+	if err := models.DB.Preload("Jobs").Where("id = ?", c.Param("id")).First(&person).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
 		return
 	}
