@@ -21,5 +21,11 @@ func main() {
 	r.POST("/job", controllers.Createjob)
 	r.GET("/job/:id", controllers.Findjob)
 	r.PATCH("/job/:id", controllers.Updatejob)
+
+	r.GET("/building", controllers.AllBuilding)
+	r.POST("/building", controllers.Createbuilding)
+	r.GET("/building/:id", controllers.Findbuilding)
+	r.PATCH("/building/:id", controllers.Updatebuilding)
+
 	r.Run()
 }
