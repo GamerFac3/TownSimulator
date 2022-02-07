@@ -27,5 +27,10 @@ func main() {
 	r.GET("/building/:id", controllers.Findbuilding)
 	r.PATCH("/building/:id", controllers.Updatebuilding)
 
+	r.GET("/buildingtype", controllers.AllbuildingType)
+	r.POST("/buildingtype", controllers.CreatebuildingType)
+	r.GET("/buildingtype/:id", controllers.FindbuildingType)
+	r.PATCH("/buildingtype/:id", controllers.UpdatebuildingType)
+
 	r.Run()
 }

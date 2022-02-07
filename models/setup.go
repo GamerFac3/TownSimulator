@@ -21,6 +21,7 @@ func ConnectDatabase() {
 	database.AutoMigrate(&Person{})
 	database.AutoMigrate(&Building{})
 	database.AutoMigrate(&BuildingType{})
+	database.AutoMigrate(&JobName{})
 	database.AutoMigrate(&Job{})
 
 	DB = database
